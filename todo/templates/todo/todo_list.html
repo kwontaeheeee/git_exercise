@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo 목록 앱</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdeliver.net/npm/bootstrap-icons@1.7.1/font/boot-strap-icons.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body>
+    <button class="btn btn-outline-warning btn-lg">롤링페이퍼</button>
+
+    <a href="#" class="btn btn-outline-danger btn-sm">회원가입</a>
+
+    <input type="button" value="로그인" class="btn btn-dark btn-sm">
+
+    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+  <button type="button" class="btn btn-primary">1</button>
+  <button type="button" class="btn btn-primary">2</button>
+
+  <div class="btn-group" role="group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Dropdown
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+      <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+    </ul>
+  </div>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+</head>
+<body>
+<button class="btn btn-danger">미리보기</button>
+    <h1 class="bg-success p-2 text-dark bg-opacity-25">Todo 목록 앱</h1>
+    <p>
+        <a href="{% url 'todo_post' %}"><i class="bi-plus"></i>Add Todo</a>
+        <a href="{% url 'done_list' %}" class="btn btn-primary" style="...">완료한 Todo 목록</a>
+        </p>
+    <ul class="list-group">
+        {% for todo in todos %}
+        <li class="list-group-item">
+            <a href="{% url 'todo_detail' pk=todo.pk %}">{{todo.title}}</a>
+            {% if todo.important %}
+                <span class="badge badge-danger">!</span>
+            {% endif %}
+            <div style="float:right">
+                <a href="{% url 'todo_done' pk=todo.pk %}" class="btn btn-danger">완료</a>>
+                <a href="{% url 'todo_edit' pk=todo.pk %}" class="btn btn-outline-primary">수정하기</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+</body>
+</html>
